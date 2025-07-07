@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://djt5k3dhe3nkh"]
+
+[ext_resource type="AudioStream" uid="uid://bp4t20jxlu0ba" path="res://complications-experimental-ambient-music-333062.mp3" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://5h20kfteqm" path="res://map.tscn" id="1_ddfuc"]
+[ext_resource type="Texture2D" uid="uid://bcmfrshhmmgw6" path="res://backgorund.tres" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://d35gennwg5auo" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cb8r2r6ahdp2o" path="res://win_screen.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_lquwl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_1bvp3")
+autoplay = true
+parameters/looping = true
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h2yge")
+
+[node name="Map" parent="." instance=ExtResource("1_ddfuc")]
+scale = Vector2(2, 2)
+
+[node name="WinScreen" parent="." instance=ExtResource("2_0xm2m")]
+visible = false
+
+[connection signal="win" from="Map" to="WinScreen" method="on_win"]

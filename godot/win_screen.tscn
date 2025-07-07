@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb8r2r6ahdp2o"]
+
+[ext_resource type="Script" uid="uid://w4cteo4i5qsh" path="res://win_screen.gd" id="1_l2arl"]
+[ext_resource type="Shader" uid="uid://oshhfxdx1yns" path="res://win_screen.gdshader" id="2_wmwda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5t5q"]
+shader = ExtResource("2_wmwda")
+shader_parameter/blur_size = 4.0
+shader_parameter/samples = 8
+
+[node name="WinScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l2arl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_l5t5q")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 400
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 400
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "You Won.."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "But how much time have you lost?"
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "Menu"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

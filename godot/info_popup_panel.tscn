@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://b11c55gvf6hgc"]
+
+[ext_resource type="Script" uid="uid://c6sc0dkepmg2o" path="res://info_popup_panel.gd" id="1_usly7"]
+[ext_resource type="Shader" uid="uid://oshhfxdx1yns" path="res://win_screen.gdshader" id="2_m8t8g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frdpg"]
+shader = ExtResource("2_m8t8g")
+shader_parameter/blur_size = 4.0
+shader_parameter/samples = 8
+
+[node name="PopupPanel" type="PopupPanel"]
+size = Vector2i(400, 649)
+visible = true
+min_size = Vector2i(400, 0)
+max_size = Vector2i(32768, 649)
+script = ExtResource("1_usly7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_frdpg")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 645.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 1607.0
+grow_horizontal = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Doomscrolling is a trap."
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "You open your phone for a second.
+One meme, one headline, one ad.
+Suddenly it’s 2 hours later.
+
+This game reflects that experience.
+A maze filled with shifting noise —
+content, distractions, repetition.
+You go back to where you’ve been,
+but it’s never the same.
+It’s always new, always more.
+
+This is how doomscrolling works.
+It hijacks attention.
+It feeds on your time.
+It numbs emotion with overstimulation.
+And it never really ends — unless you end it.
+
+Notice how you will lose feel here.
+How hard it is to focus.
+That’s not just the game. That’s real."
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+alignment = 1
+
+[node name="DoneButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Okay"
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Dont show again"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/HBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]

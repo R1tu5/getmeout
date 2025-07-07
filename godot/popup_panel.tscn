@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://m4edhyiwteja"]
+
+[ext_resource type="Script" uid="uid://bry6gjafoxeqd" path="res://popup_panel.gd" id="1_k3w7d"]
+[ext_resource type="Shader" uid="uid://oshhfxdx1yns" path="res://win_screen.gdshader" id="2_83gs4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_frdpg"]
+shader = ExtResource("2_83gs4")
+shader_parameter/blur_size = 4.0
+shader_parameter/samples = 8
+
+[node name="PopupPanel" type="PopupPanel"]
+size = Vector2i(400, 607)
+visible = true
+min_size = Vector2i(400, 0)
+max_size = Vector2i(32768, 607)
+script = ExtResource("1_k3w7d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_frdpg")
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 603.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 1357.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+text = "How to Play
+
+- Use WASD or the arrow keys to move.
+
+- Your goal is to escape the endless maze of content and ads.
+
+The exit is always at the top of the maze — but getting there won’t be easy.
+
+Each time you enter a new section, the layout changes:
+memes, ads, distractions. Always shifting.
+
+However, the main paths between maze sections stay the same,
+so you can find your way — if you stay focused."
+autowrap_mode = 3
+
+[node name="DoneButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Ok!"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/DoneButton" to="." method="_on_done_button_pressed"]

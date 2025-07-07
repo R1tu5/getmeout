@@ -1,0 +1,11 @@
+[package]
+name = "maze"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+godot = "0.3.1"
+rand = "0.9.1"
+
+[lib]
+crate-type = ["cdylib"]  
