@@ -1,0 +1,53 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Godot
+.import/
+.export/
+.export/
+*.import
+*.godot.tmp
+*.converted.scn
+*.converted.res
+
+# Godot Mono (C#)
+.mono/
+data_*/
+
+# OS/Editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Backup files
+*~
+*.bak
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Godot build artifacts
+bin/
+
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+
+# Godot-specific ignores
+.import/
+#*.import
+export.cfg
+export_credentials.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
